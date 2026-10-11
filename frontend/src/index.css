@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #BFD3EA;
+  --ink: #13305C;
+  --ink-soft: #3F5780;
+  --panel: rgba(255, 255, 255, 0.42);
+  --panel-hover: rgba(255, 255, 255, 0.55);
+  --panel-solid: rgba(255, 255, 255, 0.82);
+  --line: rgba(19, 48, 92, 0.22);
+  --line-strong: rgba(19, 48, 92, 0.38);
+  --accent: #1F4E9E;
+  --accent-gold: #F2C230;
+  --card-shadow: 0 8px 32px 0 rgba(19, 48, 92, 0.14);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0A1B3A;
+  --ink: #EAF0F8;
+  --ink-soft: #A9BAD3;
+  --panel: rgba(10, 27, 58, 0.48);
+  --panel-hover: rgba(14, 34, 72, 0.62);
+  --panel-solid: rgba(13, 27, 58, 0.85);
+  --line: rgba(234, 240, 248, 0.18);
+  --line-strong: rgba(234, 240, 248, 0.35);
+  --accent: #38BDF8;
+  --accent-gold: #F2C230;
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+@layer base {
+  body {
+    background-color: transparent;
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+}
+
+/* Condensed brand title */
+.word-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transform: skewX(-8deg);
+  transform-origin: left;
+  display: inline-block;
+}
+
+/* Translucent Glassmorphic Command Centre Card */
+.glass-panel {
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow);
+  border-radius: 0.75rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--line-strong);
+}
+
+/* Header translucent navbar */
+.glass-header {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+:root[data-theme="dark"] .glass-header {
+  background: rgba(10, 27, 58, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(19, 48, 92, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(19, 48, 92, 0.28);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(19, 48, 92, 0.5);
+}
+
+/* Signal Indicator Blinking */
+@keyframes signalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.signal-blink {
+  animation: signalBlink 1.4s ease-in-out infinite;
+}
+
+/* Train Pulse */
+@keyframes trainSoftPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 2px 4px rgba(19, 48, 92, 0.25));
+  }
+  50% {
+    transform: scale(1.015);
+    filter: drop-shadow(0 4px 8px rgba(31, 78, 158, 0.4));
+  }
+}
+
+.train-pulse {
+  animation: trainSoftPulse 2s ease-in-out infinite;
+}
