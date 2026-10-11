@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #DCE5F2;
+  --bg-gradient: linear-gradient(180deg, #E3EBF5 0%, #D4E0EE 100%);
+  --ink: #0F172A;
+  --ink-secondary: #334155;
+  --ink-muted: #64748B;
+  --panel: #FFFFFF;
+  --panel-secondary: #F8FAFC;
+  --panel-elevated: #F1F5F9;
+  --line: #CBD5E1;
+  --line-strong: #94A3B8;
+  --accent-blue: #1D4ED8;
+  --accent-blue-hover: #1E40AF;
+  --card-shadow: 0 4px 14px 0 rgba(15, 23, 42, 0.08), 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0B132B;
+  --bg-gradient: linear-gradient(180deg, #0B132B 0%, #0F172A 100%);
+  --ink: #F8FAFC;
+  --ink-secondary: #E2E8F0;
+  --ink-muted: #94A3B8;
+  --panel: #111C38;
+  --panel-secondary: #0F172A;
+  --panel-elevated: #17254A;
+  --line: #2D3E66;
+  --line-strong: #475569;
+  --accent-blue: #2563EB;
+  --accent-blue-hover: #1D4ED8;
+  --card-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.45);
+}
+
+@layer base {
+  body {
+    background: var(--bg-gradient);
+    color: var(--ink);
+    font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+}
+
+/* Condensed brand title */
+.word-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transform: skewX(-8deg);
+  transform-origin: left;
+  display: inline-block;
+}
+
+/* SOLID Crisp Dashboard Card (No washed-out transparency) */
+.glass-panel,
+.dashboard-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow);
+  border-radius: 0.75rem;
+  color: var(--ink);
+}
+
+/* Header navbar */
+.dashboard-header {
+  background: var(--panel);
+  border-bottom: 2px solid var(--line);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+/* Standard Buttons System */
+.btn-primary {
+  background-color: var(--accent-blue);
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+}
+.btn-primary:hover {
+  background-color: var(--accent-blue-hover);
+}
+
+.btn-secondary {
+  background-color: #F8FAFC;
+  color: #0F172A;
+  font-weight: 600;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.5rem;
+  transition: all 0.15s ease-in-out;
+}
+.btn-secondary:hover {
+  background-color: #EDF2F7;
+  border-color: #94A3B8;
+}
+
+:root[data-theme="dark"] .btn-secondary {
+  background-color: #17254A;
+  color: #F8FAFC;
+  border-color: #2D3E66;
+}
+:root[data-theme="dark"] .btn-secondary:hover {
+  background-color: #1E3260;
+  border-color: #475569;
+}
+
+.btn-danger {
+  background-color: #DC2626;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  transition: all 0.15s ease-in-out;
+}
+.btn-danger:hover {
+  background-color: #B91C1C;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+/* Signal Indicator Blinking */
+@keyframes signalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.signal-blink {
+  animation: signalBlink 1.4s ease-in-out infinite;
+}
