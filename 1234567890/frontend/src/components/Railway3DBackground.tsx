@@ -119,7 +119,7 @@ export const Railway3DBackground: React.FC<Railway3DBackgroundProps> = ({
       x.fillStyle = 'rgba(19,48,92,0.9)';
       x.fillRect(0, 0, 1024, 128);
       x.fillStyle = '#FFFFFF';
-      x.font = '700 70px "Barlow Condensed", sans-serif';
+      x.font = '700 70px "Palanquin Dark", "Barlow Condensed", sans-serif';
       x.textAlign = 'center';
       x.textBaseline = 'middle';
       x.fillText('RAILFLOW CENTRAL JUNCTION', 512, 64);

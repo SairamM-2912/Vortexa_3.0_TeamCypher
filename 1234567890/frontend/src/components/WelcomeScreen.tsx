@@ -224,7 +224,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onEnter }) => {
           Welcome to
         </p>
 
-        <h1 className="font-['Barlow_Condensed'] font-black tracking-wider text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center gap-2">
+        <h1 className="railflow-logo font-black tracking-wider text-6xl sm:text-8xl md:text-9xl text-white drop-shadow-[0_10px_35px_rgba(0,0,0,0.8)] flex items-center gap-2">
           RAILFLOW
         </h1>
 

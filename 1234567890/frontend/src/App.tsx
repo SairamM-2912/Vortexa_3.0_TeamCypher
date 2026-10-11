@@ -15,13 +15,13 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { ReplanningProgressModal, ReplanningStage } from './components/ReplanningProgressModal';
 import { ReplanningSummaryModal } from './components/ReplanningSummaryModal';
 import { 
-  Train as TrainIcon, ShieldCheck, ShieldAlert, Cpu, 
-  Settings, FolderOpen, RefreshCw, Play, Sun, Moon, Eye, Sparkles 
+  Train as TrainIcon, ShieldCheck, ShieldAlert, 
+  Settings, FolderOpen, RefreshCw, Play, Eye 
 } from 'lucide-react';
 
 export function App() {
   const [hasEnteredApp, setHasEnteredApp] = useState<boolean>(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const theme: 'dark' = 'dark';
   const [station, setStation] = useState<Station | null>(null);
   const [originalTrains, setOriginalTrains] = useState<Train[]>([]);
   const [trains, setTrains] = useState<Train[]>([]);
@@ -55,18 +55,18 @@ export function App() {
   const [show3DBackdrop, setShow3DBackdrop] = useState<boolean>(true);
   const [panelTranslucency, setPanelTranslucency] = useState<'ultra' | 'balanced' | 'solid'>('ultra');
 
-  // Sync theme & translucency attribute on <html> element
+  // Sync theme & translucency attribute on <html> element permanently in dark mode
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme', 'dark');
     const root = document.documentElement;
     if (panelTranslucency === 'ultra') {
-      root.style.setProperty('--panel', theme === 'light' ? 'rgba(255, 255, 255, 0.30)' : 'rgba(10, 27, 58, 0.35)');
+      root.style.setProperty('--panel', 'rgba(10, 27, 58, 0.35)');
     } else if (panelTranslucency === 'balanced') {
-      root.style.setProperty('--panel', theme === 'light' ? 'rgba(255, 255, 255, 0.50)' : 'rgba(10, 27, 58, 0.55)');
+      root.style.setProperty('--panel', 'rgba(10, 27, 58, 0.55)');
     } else {
-      root.style.setProperty('--panel', theme === 'light' ? 'rgba(255, 255, 255, 0.85)' : 'rgba(10, 27, 58, 0.85)');
+      root.style.setProperty('--panel', 'rgba(10, 27, 58, 0.85)');
     }
-  }, [theme, panelTranslucency]);
+  }, [panelTranslucency]);
 
   // Load initial nominal scenario
   useEffect(() => {
@@ -275,7 +275,7 @@ export function App() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="word-brand text-2xl font-black text-[#0B132B] dark:text-white">
+                  <span className="railflow-logo word-brand text-2xl font-black text-[#0B132B] dark:text-white">
                     RAILFLOW
                   </span>
                   <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold text-xs border border-rose-500/30">
@@ -289,71 +289,40 @@ export function App() {
               </div>
             </div>
 
-            {/* Solver & Safety Badges */}
-            <div className="flex flex-wrap items-center gap-3">
-              {/* Solver Pill */}
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs font-mono shadow-sm">
-                <Cpu className="w-4 h-4 text-[#1F4E9E] dark:text-cyan-400" />
-                <span className="text-slate-600 dark:text-slate-400 font-medium">SOLVER:</span>
-                <span className="text-[#0B132B] dark:text-cyan-300 font-bold">{solverUsed}</span>
-              </div>
-
-              {/* Safety Pill */}
+            {/* Safety Badge */}
+            <div className="flex items-center">
               <button
                 onClick={() => setIsValidationModalOpen(true)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono font-bold transition-all shadow-sm ${
                   validation?.is_valid
-                    ? 'bg-emerald-50 dark:bg-emerald-950/80 border-emerald-500 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100'
-                    : 'bg-rose-50 dark:bg-rose-950/80 border-rose-500 text-rose-800 dark:text-rose-300 animate-pulse hover:bg-rose-100'
+                    ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 hover:bg-emerald-900'
+                    : 'bg-rose-950/80 border-rose-500 text-rose-300 animate-pulse hover:bg-rose-900'
                 }`}
               >
                 {validation?.is_valid ? (
                   <>
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
                     <span>SAFETY CERTIFIED (100%)</span>
                   </>
                 ) : (
                   <>
-                    <ShieldAlert className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+                    <ShieldAlert className="w-4 h-4 text-rose-400" />
                     <span>VIOLATIONS DETECTED ({validation?.errors.length})</span>
                   </>
                 )}
               </button>
             </div>
 
-            {/* Primary Action Buttons & Theme Controls */}
+            {/* Primary Action Buttons */}
             <div className="flex items-center gap-2.5">
-              {/* Replay Intro Welcome Button */}
-              <button
-                onClick={() => setHasEnteredApp(false)}
-                title="View RailFlow Welcome Intro Screen"
-                className="btn-secondary flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold shadow-sm"
-              >
-                <Sparkles className="w-4 h-4 text-amber-500" />
-                <span>Intro</span>
-              </button>
-
               {/* 3D Expand Toggle */}
               <button
                 onClick={() => setIs3DExpanded(true)}
                 title="Expand 3D Railway Simulation to Fullscreen"
                 className="btn-secondary flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold shadow-sm"
               >
-                <Eye className="w-4 h-4 text-[#1F4E9E]" />
+                <Eye className="w-4 h-4 text-cyan-400" />
                 <span>3D View</span>
-              </button>
-
-              {/* Theme Toggle Button */}
-              <button
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-                className="btn-secondary p-2 rounded-lg text-xs font-semibold shadow-sm"
-              >
-                {theme === 'light' ? (
-                  <Moon className="w-4 h-4 text-[#1F4E9E]" />
-                ) : (
-                  <Sun className="w-4 h-4 text-amber-400" />
-                )}
               </button>
 
               <button
@@ -482,7 +451,7 @@ export function App() {
         {/* FOOTER */}
         <footer className="glass-panel mx-5 mb-5 p-4 text-xs text-[var(--ink-soft)] flex flex-wrap items-center justify-between gap-3">
           <div>
-            <span className="font-bold text-[var(--ink)]">RailFlow</span> &bull; Railway Disruption & Platform Conflict Simulator (P-03)
+            <span className="railflow-logo font-bold text-sm text-[var(--ink)]">RAILFLOW</span> &bull; Railway Disruption & Platform Conflict Simulator (P-03)
           </div>
           <div className="font-mono text-[11px]">
             Independent Safety Validation Guaranteed &bull; Google OR-Tools CP-SAT Solver &bull; Fictional Simulation Environment

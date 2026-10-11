@@ -43,13 +43,18 @@
   }
 }
 
+/* Palanquin Dark brand logo styles */
+.railflow-logo {
+  font-family: "Palanquin Dark", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
 /* Condensed brand title */
 .word-brand {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: "Palanquin Dark", sans-serif;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  transform: skewX(-8deg);
-  transform-origin: left;
+  letter-spacing: 0.04em;
   display: inline-block;
 }
 
