@@ -147,13 +147,13 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
 
           {/* North Throat Approaches */}
           <g id="north-approaches">
-            <text x="30" y="140" fill={isLight ? '#3F5780' : '#64748B'} fontSize="11" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">NORTH MAIN UP [L1]</text>
+            <text x="30" y="140" fill={isLight ? '#3F5780' : '#64748B'} fontSize="13" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">NORTH MAIN UP [L1]</text>
             <path d="M 20 150 L 120 150 L 180 115" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 120 150 L 180 185" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 120 150 L 180 255" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="2" strokeDasharray="3 3" />
             <circle cx="110" cy="142" r="5" fill="#10B981" className="signal-blink" />
 
-            <text x="30" y="340" fill={isLight ? '#3F5780' : '#64748B'} fontSize="11" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">NORTH LOOP UP [L2]</text>
+            <text x="30" y="340" fill={isLight ? '#3F5780' : '#64748B'} fontSize="13" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">NORTH LOOP UP [L2]</text>
             <path d="M 20 350 L 120 350 L 180 325" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 120 350 L 180 395" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 120 350 L 180 465" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
@@ -162,13 +162,13 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
 
           {/* South Throat Approaches */}
           <g id="south-approaches">
-            <text x="860" y="140" fill={isLight ? '#3F5780' : '#64748B'} fontSize="11" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">SOUTH MAIN DN [L3]</text>
+            <text x="860" y="140" fill={isLight ? '#3F5780' : '#64748B'} fontSize="13" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">SOUTH MAIN DN [L3]</text>
             <path d="M 820 115 L 880 150 L 980 150" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 820 185 L 880 150" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 820 255 L 880 150" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="2" strokeDasharray="3 3" />
             <circle cx="890" cy="142" r="5" fill="#10B981" />
 
-            <text x="860" y="340" fill={isLight ? '#3F5780' : '#64748B'} fontSize="11" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">SOUTH LOOP DN [L4]</text>
+            <text x="860" y="340" fill={isLight ? '#3F5780' : '#64748B'} fontSize="13" fontFamily="'Barlow Condensed', monospace" fontWeight="bold">SOUTH LOOP DN [L4]</text>
             <path d="M 820 325 L 880 350 L 980 350" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <path d="M 820 395 L 880 350" fill="none" stroke={isLight ? '#8B9CB2' : '#334155'} strokeWidth="3" />
             <circle cx="890" cy="342" r="5" fill="#10B981" />
@@ -177,7 +177,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
           {/* Station Concourse Graphic */}
           <rect
             x="360"
-            y="15"
+            y="17"
             width="280"
             height="32"
             rx="6"
@@ -185,16 +185,16 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
             stroke={isLight ? 'rgba(19,48,92,0.2)' : '#475569'}
             strokeWidth="1.5"
           />
-          <rect x="360" y="15" width="280" height="6" rx="3" fill="#1F4E9E" />
+          <rect x="360" y="6" width="280" height="6" rx="3" fill="#1F4E9E" />
           <text
             x="500"
             y="37"
             textAnchor="middle"
             fill={isLight ? '#13305C' : '#E2E8F0'}
-            fontSize="12"
+            fontSize="11.5"
             fontFamily="'Barlow Condensed', sans-serif"
             fontWeight="bold"
-            letterSpacing="1"
+            letterSpacing="0.5"
           >
             DEVGARH PASSENGER CONCOURSE & INTERCHANGE
           </text>
@@ -231,7 +231,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
 
                 {/* Platform Tag */}
                 <rect x="205" y={y - 22} width="112" height="12" rx="2" fill={isLight ? '#EAF1F8' : '#0F172A'} />
-                <text x="210" y={y - 13} fill={isLight ? '#13305C' : '#94A3B8'} fontSize="9" fontWeight="bold" fontFamily="monospace">
+                <text x="210" y={y - 13} fill={isLight ? '#13305C' : '#94A3B8'} fontSize="10.5" fontWeight="bold" fontFamily="monospace">
                   PF {platform.number} &bull; {platform.length_coaches}C &bull; {platform.line_type}
                 </text>
 
@@ -239,7 +239,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
                 {platform.electrified && (
                   <g transform={`translate(325, ${y - 22})`}>
                     <circle cx="5" cy="6" r="5" fill="#0284C7" fillOpacity={isLight ? '0.15' : '0.3'} />
-                    <text x="5" y="9" textAnchor="middle" fill="#0284C7" fontSize="8" fontWeight="bold">25kV</text>
+                    <text x="5" y="9" textAnchor="middle" fill="#0284C7" fontSize="9.5" fontWeight="bold">25kV</text>
                   </g>
                 )}
 
@@ -274,7 +274,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
                   <g transform={`translate(${effTrackEnd}, ${y - 12})`}>
                     <rect x="0" y="0" width="8" height="24" fill="#DC2626" rx="2" />
                     <line x1="0" y1="12" x2="14" y2="12" stroke="#EF4444" strokeWidth="3" />
-                    <text x="18" y="15" fill="#EF4444" fontSize="9" fontWeight="bold">BUFFER STOP</text>
+                    <text x="18" y="15" fill="#EF4444" fontSize="10.5" fontWeight="bold">BUFFER STOP</text>
                   </g>
                 )}
 
@@ -301,7 +301,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
                       className="animate-pulse"
                     />
                     <rect x="360" y={y - 12} width="280" height="24" rx="4" fill="#B91C1C" stroke="#EF4444" strokeWidth="1.5" />
-                    <text x="500" y={y + 4} textAnchor="middle" fill="#FFFFFF" fontSize="10" fontWeight="bold">
+                    <text x="500" y={y + 4} textAnchor="middle" fill="#FFFFFF" fontSize="11.5" fontWeight="bold">
                       PLATFORM CLOSED ({activeClosure.start_time} - {activeClosure.end_time}): {activeClosure.reason.substring(0, 32)}
                     </text>
                   </g>
@@ -356,7 +356,7 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
                       y={y + 4}
                       textAnchor="middle"
                       fill="#FFFFFF"
-                      fontSize="11"
+                      fontSize="13"
                       fontWeight="bold"
                     >
                       {occupyingTrain.train_number} &bull; {occupyingTrain.name} ({occupyingTrain.category})
@@ -364,13 +364,13 @@ export const StationYardDiagram: React.FC<StationYardDiagramProps> = ({
 
                     {/* Time Window */}
                     <rect x="670" y={y - 11} width="80" height="22" rx="3" fill="#000000" fillOpacity="0.45" />
-                    <text x="710" y={y + 4} textAnchor="middle" fill="#FFFFFF" fontSize="9" fontFamily="monospace">
+                    <text x="710" y={y + 4} textAnchor="middle" fill="#FFFFFF" fontSize="10.5" fontFamily="monospace">
                       {occupyingTrain.actual_arrival || occupyingTrain.scheduled_arrival} &rarr; {occupyingTrain.actual_departure || occupyingTrain.scheduled_departure}
                     </text>
 
                     {/* Priority Badge */}
                     <rect x="250" y={y - 11} width="48" height="22" rx="3" fill="#000000" fillOpacity="0.45" />
-                    <text x="274" y={y + 4} textAnchor="middle" fill="#FEF08A" fontSize="9" fontWeight="bold">
+                    <text x="274" y={y + 4} textAnchor="middle" fill="#FEF08A" fontSize="10.5" fontWeight="bold">
                       PRI {occupyingTrain.priority}
                     </text>
                   </g>

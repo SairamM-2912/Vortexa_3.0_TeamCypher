@@ -21,7 +21,7 @@ import {
 
 export function App() {
   const [hasEnteredApp, setHasEnteredApp] = useState<boolean>(false);
-  const theme: 'dark' = 'dark';
+  const theme: 'light' | 'dark' = 'dark';
   const [station, setStation] = useState<Station | null>(null);
   const [originalTrains, setOriginalTrains] = useState<Train[]>([]);
   const [trains, setTrains] = useState<Train[]>([]);
@@ -55,10 +55,11 @@ export function App() {
   const [show3DBackdrop, setShow3DBackdrop] = useState<boolean>(true);
   const [panelTranslucency, setPanelTranslucency] = useState<'ultra' | 'balanced' | 'solid'>('ultra');
 
-  // Sync theme & translucency attribute on <html> element permanently in dark mode
+  // Sync dark theme & translucency attribute on <html> element
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
     const root = document.documentElement;
+    root.setAttribute('data-theme', 'dark');
+    root.classList.add('dark');
     if (panelTranslucency === 'ultra') {
       root.style.setProperty('--panel', 'rgba(10, 27, 58, 0.35)');
     } else if (panelTranslucency === 'balanced') {
@@ -234,9 +235,9 @@ export function App() {
 
   if (!station) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[#BFD3EA] text-[#13305C]">
+      <div className="flex h-screen items-center justify-center bg-[#0B132B] text-slate-100">
         <div className="flex flex-col items-center gap-3">
-          <RefreshCw className="w-8 h-8 animate-spin text-[#1F4E9E]" />
+          <RefreshCw className="w-8 h-8 animate-spin text-cyan-400" />
           <span className="font-['Barlow_Condensed'] font-bold text-lg tracking-wider">
             INITIALIZING RAILFLOW SIMULATION ENGINE...
           </span>
@@ -266,7 +267,7 @@ export function App() {
       {/* 2. COMMAND CENTRE WORKSPACE (Overlay on top of 3D background) */}
       <div className={`relative z-10 flex flex-col min-h-screen ${is3DExpanded ? 'pointer-events-none opacity-0' : ''}`}>
         {/* TOP COMMAND BAR */}
-        <header className="sticky top-0 z-40 bg-white dark:bg-[#0B132B] border-b border-slate-300 dark:border-slate-800 px-6 py-3 shadow-md transition-colors">
+        <header className="sticky top-0 z-40 bg-[#0B132B] border-b border-slate-800 px-6 py-3 shadow-md transition-colors">
           <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Brand Logo matching the attachment */}
             <div className="flex items-center gap-3">
@@ -275,28 +276,28 @@ export function App() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="railflow-logo word-brand text-2xl font-black text-[#0B132B] dark:text-white">
+                  <span className="word-brand text-2xl font-black text-white">
                     RAILFLOW
                   </span>
-                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-700 dark:text-rose-400 font-bold text-xs border border-rose-500/30">
+                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 font-bold text-xs border border-rose-500/30">
                     <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
                     <span className="font-mono">LIVE SIMULATION</span>
                   </div>
                 </div>
-                <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+                <p className="text-xs text-slate-400 font-medium">
                   Simulate Disruptions. Resolve Conflicts. Restore Flow.
                 </p>
               </div>
             </div>
 
             {/* Safety Badge */}
-            <div className="flex items-center">
+            <div className="flex flex-wrap items-center">
               <button
                 onClick={() => setIsValidationModalOpen(true)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono font-bold transition-all shadow-sm ${
                   validation?.is_valid
-                    ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 hover:bg-emerald-900'
-                    : 'bg-rose-950/80 border-rose-500 text-rose-300 animate-pulse hover:bg-rose-900'
+                    ? 'bg-emerald-950/80 border-emerald-500 text-emerald-300 hover:bg-emerald-900/80'
+                    : 'bg-rose-950/80 border-rose-500 text-rose-300 animate-pulse hover:bg-rose-900/80'
                 }`}
               >
                 {validation?.is_valid ? (
@@ -451,7 +452,7 @@ export function App() {
         {/* FOOTER */}
         <footer className="glass-panel mx-5 mb-5 p-4 text-xs text-[var(--ink-soft)] flex flex-wrap items-center justify-between gap-3">
           <div>
-            <span className="railflow-logo font-bold text-sm text-[var(--ink)]">RAILFLOW</span> &bull; Railway Disruption & Platform Conflict Simulator (P-03)
+            <span className="font-bold text-[var(--ink)]">RailFlow</span> &bull; Railway Disruption & Platform Conflict Simulator (P-03)
           </div>
           <div className="font-mono text-[11px]">
             Independent Safety Validation Guaranteed &bull; Google OR-Tools CP-SAT Solver &bull; Fictional Simulation Environment

@@ -3,7 +3,7 @@ import sys
 import os
 import time
 
-PYTHON_PATH = r"C:\Users\SUVI\AppData\Local\Programs\Python\Python311\python.exe"
+PYTHON_PATH = sys.executable
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BACKEND_DIR = os.path.join(BASE_DIR, "backend")
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
